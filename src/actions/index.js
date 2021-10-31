@@ -22,13 +22,11 @@ export const addHeader = input => ({
   editing: false,
 })
 
-// eslint-disable-next-line no-shadow
 export const deletePost = id => ({
   type: TOGGLE_DELETED,
   id,
 })
 
-// eslint-disable-next-line no-shadow
 export const toggleEditing = id => ({
   type: TOGGLE_EDITING,
   id,
