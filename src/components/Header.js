@@ -65,11 +65,18 @@ const Header = ({
       <PostWrap>
         {'Description: '}
         { intro.desc }
+        <br />
         <img
           src={intro.img}
           alt="new"
           onError={e => {
             e.target.style.display = 'none'
+          }}
+          style={{
+            width: 200,
+            height: 200,
+            border: '10px solid darkgrey',
+            borderRadius: '2px',
           }}
         />
         <Button type="button" onClick={() => dispatchEditHeader()}> Edit </Button>

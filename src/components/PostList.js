@@ -36,6 +36,12 @@ const PostList = ({
                 onError={e => {
                   e.target.style.display = 'none'
                 }}
+                style={{
+                  width: 200,
+                  height: 200,
+                  border: '10px solid darkgrey',
+                  borderRadius: '2px',
+                }}
               />
               <br />
 
