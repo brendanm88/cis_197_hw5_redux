@@ -10,6 +10,7 @@ const Input = ({ dispatchAddPost }) => {
   const [title, setTitle] = useState('')
   const [img, setImg] = useState('')
   const [editing, setEditing] = useState(false)
+  // if editing input show input boxes
   if (editing) {
     return (
       <>
@@ -37,6 +38,7 @@ const Input = ({ dispatchAddPost }) => {
       </>
     )
   }
+  // if not editing show just button
   return (
     <div>
       <SmallTitle> New Posts (most recent at bottom!) </SmallTitle>

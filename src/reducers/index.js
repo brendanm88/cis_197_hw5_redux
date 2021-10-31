@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 
 import posts from './posts'
-// import status from './status'
+import intro from './intro'
 
 export default combineReducers({
   posts,
-  // status,
+  intro,
 })

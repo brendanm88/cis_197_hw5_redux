@@ -5,19 +5,19 @@ import {
   deletePost,
   toggleEditing,
   addPost,
-  // editPost,
 } from '../actions'
 
+// if editing a post show input boxes, else show just content
 const PostList = ({
   posts,
   dispatchToggleEditing,
   dispatchDeletePost,
-  // dispatchEditPost,
   dispatchAddPost,
 }) => (
   <>
     {posts.map(post => {
-      if (/* !post.deleted && */ !post.editing) {
+      // show input boxes for the current post being edited
+      if (!post.editing) {
         return (
           <PostWrap key={post.id}>
             <div>
@@ -45,7 +45,8 @@ const PostList = ({
           </PostWrap>
         )
       }
-      if (post.editing /* && !post.deleted */) {
+      // show editing boxes of a post
+      if (post.editing) {
         const [desc, setDesc] = useState(post.desc)
         const [title, setTitle] = useState(post.title)
         const [img, setImg] = useState(post.img)
@@ -70,7 +71,6 @@ const PostList = ({
                   desc,
                   img,
                 })
-                // dispatchEditPost({ title, desc, img })
               }}
             >
               Update
@@ -100,7 +100,6 @@ const mapDispatchToProps = dispatch => ({
   dispatchDeletePost: id => dispatch(deletePost(id)),
   dispatchToggleEditing: id => dispatch(toggleEditing(id)),
   dispatchAddPost: input => dispatch(addPost(input)),
-  // dispatchEditPost: (id, input) => dispatch(editPost(id, input)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostList)

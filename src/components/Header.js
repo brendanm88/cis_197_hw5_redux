@@ -1,19 +1,27 @@
 import React, { useState } from 'react'
+import { connect } from 'react-redux'
 import {
   Title,
   Button,
   InputWrap,
   PostWrap,
 } from '../styles/StyleComps'
+import {
+  toggleEditHeader,
+  addHeader,
+} from '../actions'
 
-const Header = () => {
-  const [desc, setDesc] = useState('')
-  const [img, setImg] = useState('')
-  const [editing, setEditing] = useState(false)
-  const [prevDesc, setPrevDesc] = useState('')
-  const [prevImage, setPrevImage] = useState('')
-
-  if (editing) {
+// if editing a post show input boxes, else show just content
+const Header = ({
+  intro,
+  dispatchEditHeader,
+  dispatchAddHeader,
+}) => {
+  // if editing show boxes and handle input
+  if (intro.editing) {
+    const [desc, setDesc] = useState(intro.desc)
+    const [img, setImg] = useState(intro.img)
+    const [editing, setEditing] = useState(false)
     return (
       <>
         <Title>
@@ -27,9 +35,11 @@ const Header = () => {
           <Button
             type="button"
             onClick={() => {
-              setPrevDesc(desc)
-              setPrevImage(img)
               setEditing(false)
+              dispatchAddHeader({
+                desc,
+                img,
+              })
             }}
           >
             Update
@@ -37,9 +47,7 @@ const Header = () => {
           <Button
             type="button"
             onClick={() => {
-              setDesc(prevDesc)
-              setImg(prevImage)
-              setEditing(false)
+              dispatchEditHeader()
             }}
           >
             Cancel
@@ -48,6 +56,7 @@ const Header = () => {
       </>
     )
   }
+  // if not editing show previous input as should be displayed
   return (
     <>
       <Title>
@@ -55,18 +64,28 @@ const Header = () => {
       </Title>
       <PostWrap>
         {'Description: '}
-        { desc }
+        { intro.desc }
         <img
-          src={img}
+          src={intro.img}
           alt="new"
           onError={e => {
             e.target.style.display = 'none'
           }}
         />
-        <Button type="button" onClick={() => setEditing(true)}> Edit </Button>
+        <Button type="button" onClick={() => dispatchEditHeader()}> Edit </Button>
       </PostWrap>
     </>
   )
 }
 
-export default Header
+const mapStateToProps = state => ({
+  intro: state.intro,
+  editing: state.editing,
+})
+
+const mapDispatchToProps = dispatch => ({
+  dispatchEditHeader: () => dispatch(toggleEditHeader()),
+  dispatchAddHeader: input => dispatch(addHeader(input)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

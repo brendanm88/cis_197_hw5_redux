@@ -1,11 +1,9 @@
-// let id = 0
-
 export const ADD_POST = 'ADD_POST'
+export const ADD_HEADER = 'ADD_HEADER'
 export const EDIT_POST = 'EDIT_POST'
 export const TOGGLE_DELETED = 'TOGGLE_DELETED'
 export const TOGGLE_EDITING = 'TOGGLE_EDITING'
-
-// export const SET_STATUS = 'SET_STATUS'
+export const TOGGLE_EDIT_HEADER = 'TOGGLE_EDITING'
 
 export const addPost = input => ({
   type: ADD_POST,
@@ -17,16 +15,12 @@ export const addPost = input => ({
   deleted: false,
 })
 
-// eslint-disable-next-line no-shadow
-// export const editPost = (id, input) => ({
-//   type: EDIT_POST,
-//   title: input.title,
-//   desc: input.desc,
-//   img: input.img,
-//   editing: false,
-//   deleted: false,
-//   id,
-// })
+export const addHeader = input => ({
+  type: ADD_HEADER,
+  desc: input.desc,
+  img: input.img,
+  editing: false,
+})
 
 // eslint-disable-next-line no-shadow
 export const deletePost = id => ({
@@ -40,13 +34,6 @@ export const toggleEditing = id => ({
   id,
 })
 
-// export const STATUS = {
-//   SHOW_ALL: 'SHOW_ALL',
-//   SHOW_DELETED: 'SHOW_DELETED',
-//   SHOW_ACTIVE: 'SHOW_ACTIVE',
-// }
-
-// export const setStatus = status => ({
-//   type: SET_STATUS,
-//   status,
-// })
+export const toggleEditHeader = () => ({
+  type: TOGGLE_EDIT_HEADER,
+})
